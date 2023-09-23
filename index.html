@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="icon" href="mappplogo.jpeg" type="image/png">
+
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+        type="text/css" />
+    <link href='https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css' rel='stylesheet'>
+    <script src='https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js'></script>
+    <title>StreetSense</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        #fetchButton {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 2;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            /* Move the form container to the right side */
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 24px;
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        /* Move the form options to the right side */
+        .toggle-group {
+            text-align: right;
+        }
+
+        /* Rest of your CSS styles... */
+    </style>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div id='map'></div>
+    <div class='form-container'>
+        <form id='params'>
+            <h4 class='txt-m txt-bold mb6'>Choose a travel mode:</h4>
+            <div class='mb12 mr12 toggle-group align-center'>
+                <label class='toggle-container'>
+                    <input name='profile' type='radio' value='walking'>
+                    <div class='toggle toggle--active-null toggle--null'>Walking</div>
+                </label>
+                <label class='toggle-container'>
+                    <input name='profile' type='radio' value='cycling' checked>
+                    <div class='toggle toggle--active-null toggle--null'>Cycling</div>
+                </label>
+                <label class='toggle-container'>
+                    <input name='profile' type='radio' value='driving'>
+                    <div class='toggle toggle--active-null toggle--null'>Driving</div>
+                </label>
+            </div>
+            <h4 class='txt-m txt-bold mb6'>Choose a maximum duration:</h4>
+            <div class='mb12 mr12 toggle-group align-center'>
+                <label class='toggle-container'>
+                    <input name='duration' type='radio' value='10' checked>
+                    <div class='toggle toggle--active-null toggle--null'>10 min</div>
+                </label>
+                <label class='toggle-container'>
+                    <input name='duration' type='radio' value='20'>
+                    <div class='toggle toggle--active-null toggle--null'>20 min</div>
+                </label>
+                <label class='toggle-container'>
+                    <input name='duration' type='radio' value='30'>
+                    <div class='toggle toggle--active-null toggle--null'>30 min</div>
+                </label>
+            </div>
+        </form>
+
+    </div>
+    <button id="fetchButton">Fetch Live Traffic Data</button>
+
+    <div id="trafficDataContainer"></div>
+</body>
+
+</html>
